@@ -4,6 +4,11 @@ import java.util.Scanner;
 
 public class NumberGuessGame {
     public static void main(String args[]) throws Exception {
+        /*
+       This block of code asks the player for a min and maximum number.
+       It stores the min and max and asks the player to make their first guess 
+       and try to guess a number between their min and max number
+        */ 
         Random random = new Random();
         Scanner sc = new Scanner(System.in);
         System.out.println("Choose the minimum number");
@@ -21,11 +26,23 @@ public class NumberGuessGame {
         if (sc.hasNextInt()) {
             int guess = sc.nextInt();
 
+        /*
+        This block of code is error checking.
+        It ensures that if their guess is a number larger or smaller than their
+        min and max respectivly, the code will print invalid guess, not count that guess in 
+        their final score, and ask them for another guess.
+         */
         if (min > guess || guess > max) {
             System.out.println("Invalid Input Try Again");
             guess(sc, number, guessList, max, min);
 
         } 
+        
+        /*
+        This block of code is also error checking.
+        It ensures that the user does not enter any words (strings) where they should
+        guess a number (int).
+        */
         else if (guessList.contains(guess)) {
             System.out.println("You already guessed this number, please guess again");
             guess(sc, number, guessList, max, min);
@@ -43,6 +60,11 @@ public class NumberGuessGame {
             guess(sc, number, guessList, max, min);
         }
 
+        /* 
+        If the user guesses the correct number the code will end the loop and print
+        "You guessed correct" and print the amount of tries it took the player to guess the 
+        magic number.
+         */
         if (number == guess) {
             guessList.add(guess);
             System.out.println("You guessed correct!!!");
